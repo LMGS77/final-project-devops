@@ -22,9 +22,8 @@ services:
   mongo:
     image: mongo:latest
     container_name: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+    env_file:
+      - ./expensy_backend/.env
     ports:
       - "27017:27017"
     volumes:
@@ -35,8 +34,8 @@ services:
   redis:
     image: redis:latest
     container_name: redis
-    environment:
-      REDIS_PASSWORD: someredispassword
+    env_file:
+      - ./expensy_backend/.env    
     ports:
       - "6379:6379"
     command: redis-server --requirepass someredispassword
